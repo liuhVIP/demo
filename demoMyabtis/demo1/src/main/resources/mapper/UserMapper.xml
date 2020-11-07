@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=空间名-->
+<mapper namespace="cn.baiduliuh.demo1.dao.UserMapper">
+    <select id="getAllUser" resultType="cn.baiduliuh.demo1.bean.User">
+        SELECT id,mobile,PASSWORD,sex,birthdate,address,email,state,create_time AS createTime,update_time AS updateTime FROM USER;
+    </select>
+    <insert id="addUser" parameterType="cn.baiduliuh.demo1.bean.User">
+        INSERT INTO `users`.`user` (`mobile`, `password`, `sex`, `birthdate`, `email`, `state`, `create_time`, `update_time`) VALUES (#{mobile}, #{password}, #{sex}, #{birthdate}, #{email}, #{state},#{createTime}, #{updateTime});
+    </insert>
+
+    <update id="deldeteUser">
+        UPDATE USER SET state="-1" WHERE mobile=#{mobile} AND PASSWORD=#{password} ;
+    </update>
+    <update id="update">
+        UPDATE USER SET sex=#{sex},birthdate=#{birthdate},address=#{address},email=#{email},update_time=#{updateTime} where id=#{id};
+    </update>
+</mapper>
